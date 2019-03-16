@@ -20,7 +20,7 @@ mpl.rcParams['mathtext.bf'] =  'Crimson Text:bold'
 # file = 'pg1116_normdata.txt'
 # store the file names in a list to be able to iterate over them:
 
-files = ['HIa_nc.dat', 'HIb.dat', 'CIIa.dat','CIIb.dat', 'NII_nc.dat','SiIIa.dat', 'SiIIb.dat', 'SiIIc.dat', 'SiIII.dat', 'OVIa.dat', 'OVIb.dat', 'CIVa.dat', 'CIVb.dat', 'NVa.dat', 'NVb.dat']
+files = ['HIa_nc.dat', 'HIb.dat', 'CIIa.dat','CIIb_nc.dat', 'NII_nc.dat','SiIIa.dat', 'SiIIb.dat', 'SiIIc.dat', 'SiIII.dat', 'OVIa.dat', 'OVIb.dat', 'CIVa.dat', 'CIVb.dat', 'NVa.dat', 'NVb.dat']
 
 # making a function
 
@@ -28,8 +28,8 @@ def read_file(filename):
         w, f, e = np.loadtxt(filename, unpack=True,skiprows=1)
         return w, f, e
 
-    c = 3e5
-    gray = '#e5e8e8'
+c = 3e5
+gray = '#e5e8e8'
 
 
 #reading the file
@@ -40,9 +40,9 @@ def read_file(filename):
 # zabs 
 # z=[0.138527] # redshift for v_rel = 0 kms ; Danforth
 
-    z = [0.1384840678] # two component HI fit
-    z2 = 0.1386364296
-
+z = [0.1384840678] # two component HI fit
+z2 = 0.1386364296
+if 1:
     for z1 in z:
 
         fig, ((ax1, ax6, ax11), (ax2, ax7, ax12), (ax3, ax8, ax13), (ax4, ax9, ax14), (ax5, ax10, ax15),)=plt.subplots(5, 3, sharex=False, sharey=True, figsize=(11, 8))
