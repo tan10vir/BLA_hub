@@ -22,9 +22,11 @@ mpl.rcParams['mathtext.bf'] =  'Crimson Text:bold'
 
 files = ['HIa_nc.dat', 'HIb.dat', 'CIIa.dat','CIIb.dat', 'NII_nc.dat','SiIIa.dat', 'SiIIb.dat', 'SiIIc.dat', 'SiIII.dat', 'OVIa.dat', 'OVIb.dat', 'CIVa.dat', 'CIVb.dat', 'NVa.dat', 'NVb.dat']
 
-for f in file:
-    print(f)
-    w, f, e = np.loadtxt(f, unpack=True,skiprows=1)
+# making a function
+
+def read_file(filename):
+        w, f, e = np.loadtxt(filename, unpack=True,skiprows=1)
+        return w, e, f
 
     c = 3e5
     gray = '#e5e8e8'
@@ -51,9 +53,10 @@ for f in file:
         # zc = [0.3257065, 0.3255469] # redshift for two components
         # fit=['vpfit_chunk001.txt', 'vpfit_chunk002.txt', 'vpfit_chunk003.txt', 'vpfit_chunk004.txt', 'vpfit_chunk005.txt', 'vpfit_chunk006.txt', 'vpfit_chunk007.txt'] # vpfit fit profiles
 
-        for ax, l1, n1 in zip((ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10, ax11, ax12, ax13, ax14, ax15), lam, name):
+        for ax, l1, n1, filename in zip((ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10, ax11, ax12, ax13, ax14, ax15), lam, name, files):
             
             label= n1 + '  ${\lambda}$' + '{:d}'.format(int(l1)) 
+            w, e, f=read_file(filename)
             ax.plot((((w/(1.0+z1))-l1)/l1)*c, f, linestyle='-', linewidth=2.0,  color='k',drawstyle='steps-mid')
 
             # for ft in fit:
