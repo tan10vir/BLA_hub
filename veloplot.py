@@ -26,7 +26,7 @@ files = ['HIa_nc.dat', 'HIb.dat', 'CIIa.dat','CIIb.dat', 'NII_nc.dat','SiIIa.dat
 
 def read_file(filename):
         w, f, e = np.loadtxt(filename, unpack=True,skiprows=1)
-        return w, e, f
+        return w, f, e
 
     c = 3e5
     gray = '#e5e8e8'
@@ -56,7 +56,7 @@ def read_file(filename):
         for ax, l1, n1, filename in zip((ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10, ax11, ax12, ax13, ax14, ax15), lam, name, files):
             
             label= n1 + '  ${\lambda}$' + '{:d}'.format(int(l1)) 
-            w, e, f=read_file(filename)
+            w, f, e=read_file(filename)
             ax.plot((((w/(1.0+z1))-l1)/l1)*c, f, linestyle='-', linewidth=2.0,  color='k',drawstyle='steps-mid')
 
             # for ft in fit:
