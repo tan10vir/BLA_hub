@@ -51,9 +51,10 @@ if 1:
     
         name=['HI', 'HI', 'CII', 'CII', 'NII', 'SiII', 'SiII', 'SiII', 'SiIII','OVI', 'OVI', 'CIV', 'CIV', 'NV', 'NV']
 
-        zc = [0.1384821575] # fitting redshift for SiII
+        zsi2 = [0.1384821575] # fitting redshift for SiII
+        zsi3 = [0.1384875538] # fitting redshift for SiIII
 
-        fit=['Lya_vpfit_old.txt', 'Lyb_vpfit_old.txt', 'CIIa_tied_NII_vpfit.txt', 'CIIb_disp_tied_NII_vpfit.txt', 'NII_vpfit.txt', 'SiIIa_vpfit.txt','SiIIb_vpfit.txt', 'SiIIc_vpfit.txt'] # vpfit fit profiles
+        fit=['Lya_vpfit_old.txt', 'Lyb_vpfit_old.txt', 'CIIa_tied_NII_vpfit.txt', 'CIIb_disp_tied_NII_vpfit.txt', 'NII_vpfit.txt', 'SiIIa_vpfit.txt','SiIIb_vpfit.txt', 'SiIIc_vpfit.txt','SiIII_vpfit.txt'] # vpfit fit profiles
 
         for ax, l1, n1, filename in zip((ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10, ax11, ax12, ax13, ax14, ax15), lam, name, files):
             
@@ -105,12 +106,14 @@ if 1:
 
             ax.axvline((z1-z1)*c/(1.+((z1+z1)/2.)), linewidth=1.05, color='b', linestyle='-.')
 
-            for z2 in zc:
-                comp = (z2-z1)*c/(1.+((z2+z1)/2.))
+            for z2, z3 in zip(zsi2, zsi3):
+                si2 = (z2-z1)*c/(1.+((z2+z1)/2.))
                 for axk in (ax6, ax7, ax8):
                     # ax.axvline((z2-z1)*c/(1.+((z2+z1)/2.)), linewidth=1.25, color='b', linestyle='--')
                     # ax.annotate(xy=(comp, 1.05), )
-                    axk.plot([comp, comp], [1.2, 1.0], color='c', linewidth=1.75)
+                    axk.plot([si2, si2], [1.2, 1.0], color='c', linewidth=1.75)
+                si3 = (z3-z1)*c/(1.+((z3+z1)/2.))
+                ax9.plot([si3, si3], [1.2, 1.0], color='c', linewidth=1.75)
 
             # ax.axvline((z2-z1)*c/(1.+((z2+z1)/2.)), linewidth=1.05, color='b', linestyle='-.')
         # 
