@@ -110,7 +110,7 @@ if 1:
                 for axk in (ax6, ax7, ax8):
                     # ax.axvline((z2-z1)*c/(1.+((z2+z1)/2.)), linewidth=1.25, color='b', linestyle='--')
                     # ax.annotate(xy=(comp, 1.05), )
-                    axk.plot([comp, comp], [1.2, 1.0], color='m', linewidth=1.5)
+                    axk.plot([comp, comp], [1.2, 1.0], color='c', linewidth=1.75)
 
             # ax.axvline((z2-z1)*c/(1.+((z2+z1)/2.)), linewidth=1.05, color='b', linestyle='-.')
         # 
