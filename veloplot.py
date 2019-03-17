@@ -7,6 +7,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.ticker import AutoMinorLocator 
 
+from itertools import islice
+
 font = {'family' : 'serif', 'weight' : 'normal', 'size'   : 18}
 plt.rc('font', **font)
 
@@ -39,9 +41,8 @@ gray = '#e5e8e8'
 
 # zabs 
 # z=[0.138527] # redshift for v_rel = 0 kms ; Danforth
+z = [0.1384984413] # v_rel = 0 km/s corresponding to NII fit 'z'
 
-z = [0.1384840678] # two component HI fit
-z2 = 0.1386364296
 if 1:
     for z1 in z:
 
@@ -50,18 +51,21 @@ if 1:
     
         name=['HI', 'HI', 'CII', 'CII', 'NII', 'SiII', 'SiII', 'SiII', 'SiIII','OVI', 'OVI', 'CIV', 'CIV', 'NV', 'NV']
 
-        # zc = [0.3257065, 0.3255469] # redshift for two components
-        # fit=['vpfit_chunk001.txt', 'vpfit_chunk002.txt', 'vpfit_chunk003.txt', 'vpfit_chunk004.txt', 'vpfit_chunk005.txt', 'vpfit_chunk006.txt', 'vpfit_chunk007.txt'] # vpfit fit profiles
+        zc = [0.1384821575] # fitting redshift for SiII
+
+        fit=['Lya_vpfit_old.txt', 'Lyb_vpfit_old.txt', 'CIIa_tied_NII_vpfit.txt', 'CIIb_disp_tied_NII_vpfit.txt', 'NII_vpfit.txt', 'SiIIa_vpfit.txt','SiIIb_vpfit.txt', 'SiIIc_vpfit.txt'] # vpfit fit profiles
 
         for ax, l1, n1, filename in zip((ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10, ax11, ax12, ax13, ax14, ax15), lam, name, files):
             
             label= n1 + '  ${\lambda}$' + '{:d}'.format(int(l1)) 
+            #-------------addition------------------------    
             w, f, e=read_file(filename)
+
             ax.plot((((w/(1.0+z1))-l1)/l1)*c, f, linestyle='-', linewidth=2.0,  color='k',drawstyle='steps-mid')
 
-            # for ft in fit:
-                # u, x=np.loadtxt(ft,usecols=(0,3), comments='!', unpack=True)
-                # ax.plot((((u/(1.0+z1))-l1)/l1)*c, x, linestyle='-', linewidth=1.75,  color='r')
+            for ft in fit[2:]:
+                u, x=np.loadtxt(ft,usecols=(0,3), comments='!', unpack=True)
+                ax.plot((((u/(1.0+z1))-l1)/l1)*c, x, linestyle='-', linewidth=1.75,  color='r')
 
             ax.set_xlim(-200,200)
             ax.set_ylim(-0.2,1.2)
@@ -100,13 +104,21 @@ if 1:
 
 
             ax.axvline((z1-z1)*c/(1.+((z1+z1)/2.)), linewidth=1.05, color='b', linestyle='-.')
-            ax.axvline((z2-z1)*c/(1.+((z2+z1)/2.)), linewidth=1.05, color='b', linestyle='-.')
+
+            for z2 in zc:
+                comp = (z2-z1)*c/(1.+((z2+z1)/2.))
+                for axk in (ax6, ax7, ax8):
+                    # ax.axvline((z2-z1)*c/(1.+((z2+z1)/2.)), linewidth=1.25, color='b', linestyle='--')
+                    # ax.annotate(xy=(comp, 1.05), )
+                    axk.plot([comp, comp], [1.2, 1.0], color='m', linewidth=1.5)
+
+            # ax.axvline((z2-z1)*c/(1.+((z2+z1)/2.)), linewidth=1.05, color='b', linestyle='-.')
         # 
             for axis in ['top','bottom','left','right']:
                 ax.spines[axis].set_linewidth(1.75)
 
         #
-            fig.suptitle(r'PG 1116+215 :: z$_{\mathrm{abs}} =$'+ str(z1)[:8], fontsize=15)
+            fig.suptitle(r'PG 1116+215 :: v$_{\mathrm{rel}}=0$ $\mathrm{km/s}$ $\mathrm{for}$ z$_{\mathrm{abs}} =$'+ str(z1)[:8], fontsize=15)
             fig.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
             fig.subplots_adjust(top=0.94, hspace=0,wspace=0)
             fig.savefig(r'PG1116_veloplot_' +str(z1)[:8] +'.pdf')
