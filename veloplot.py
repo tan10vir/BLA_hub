@@ -20,6 +20,7 @@ mpl.rcParams['mathtext.bf'] =  'Crimson Text:bold'
 #
 
 # file = 'pg1116_normdata.txt'
+
 # store the file names in a list to be able to iterate over them:
 # removing . dat from filenames
 files = ['HIa_nc', 'HIb', 'CIIa','CIIb_nc', 'NII_nc','SiIIa', 'SiIIb',
@@ -47,34 +48,31 @@ z = [0.1384984413] # v_rel = 0 km/s corresponding to NII fit 'z'
 for z1 in z:
 
     fig, ((ax1, ax6, ax11), (ax2, ax7, ax12), (ax3, ax8, ax13),
-          (ax4, ax9, ax14), (ax5, ax10, ax15),) = plt.subplots(3,sharex=False, sharey=True, figsize=(11, 8))
-    lam = [1215.6701, 1025.7223, 1334.5323, 1036.3367, 1083.9937, 1260.4221, 1193.2897, 1190.4158, 1206.5, 1031.9261,
-           1037.6167, 1548.1949, 1550.77, 1238.8210, 1242.8040]
+          (ax4, ax9, ax14), (ax5, ax10, ax15),) = plt.subplots(5, 3, sharex=False, sharey=True, figsize=(11, 8))
+    lam = [1215.6701, 1025.7223, 1334.5323, 1036.3367, 1083.9937, 1260.4221, 1193.2897, 1190.4158, 1206.5, 1031.9261, 1037.6167, 1548.1949, 1550.77, 1238.8210, 1242.8040]
 
     name = ['HI', 'HI', 'CII', 'CII', 'NII', 'SiII', 'SiII', 'SiII', 'SiIII', 'OVI', 'OVI', 'CIV', 'CIV', 'NV', 'NV']
 
     zsi2 = [0.1384821575]  # fitting redshift for SiII
     zsi3 = [0.1384875538]  # fitting redshift for SiIII
 
-    fit = ['Lya_vpfit_old.txt', 'Lyb_vpfit_old.txt', 'CIIa_tied_NII_vpfit.txt', 'CIIb_disp_tied_NII_vpfit.txt',
-           'NII_vpfit.txt', 'SiIIa_vpfit.txt', 'SiIIb_vpfit.txt', 'SiIIc_vpfit.txt',
-           'SiIII_vpfit.txt']  # vpfit fit profiles
+    # fit = ['Lya_vpfit_old.txt', 'Lyb_vpfit_old.txt', 'CIIa_tied_NII_vpfit.txt', 'CIIb_disp_tied_NII_vpfit.txt', 'NII_vpfit.txt', 'SiIIa_vpfit.txt', 'SiIIb_vpfit.txt',  'SiIIc_vpfit.txt', 'SiIII_vpfit.txt']  # vpfit fit profiles
 
-    for ax, l1, n1, filename in zip((ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10, ax11, ax12, ax13, ax14, ax15),
-                                    lam, name, files):
+    for ax, l1, n1, filename in zip((ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9, ax10, ax11, ax12, ax13, ax14, ax15), lam, name, files):
 
         label = n1 + '  ${\lambda}$' + '{:d}'.format(int(l1))
-        # -------------addition------------------------
         w, f, e = read_file(filename+'.dat')
 
         ax.plot((((w / (1.0 + z1)) - l1) / l1) * c, f, linestyle='-', linewidth=2.0, color='k', drawstyle='steps-mid')
 
         # do following
         # best way is to make sure that the fit files have same file naming structure as below
+        # read the fit files (changes made to local fit files  as you have suggested)
+
         fitfile=filename+'_vpfit.txt'
 
         try:
-            u, x = np.loadtxt(ft, usecols=(0, 3), comments='!', unpack=True)
+            u, x = np.loadtxt(fitfile, usecols=(0, 3), comments='!', unpack=True)
             ax.plot((((u / (1.0 + z1)) - l1) / l1) * c, x, linestyle='-', linewidth=1.75, color='r')
         except:
             print("file {} does not exist".format(fitfile))
