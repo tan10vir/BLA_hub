@@ -1,0 +1,8 @@
+spec_path /home/tanvir/BLA_project/DATA/20_selected/pg1116/bayesvp_tutorial
+output n2
+mcmc 50 200 4 bic kombine
+%% NII.spec 1232.050000 1235.720000
+% N II 15 30 0.138498
+logN 10.00 18.00
+b    2.00 12.00
+z    0.138498 200.00
