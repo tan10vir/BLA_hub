@@ -34,7 +34,7 @@ from bayesvp.config import DefineParams
 
 #----------- Path of the spectrum ---------------------------------------
 
-spectrum_path = '/home/tanvir/BLA_project/DATA/20_selected/pg1116/bayesvp_tutorial/'
+# spectrum_path = '/home/tanvir/BLA_project/DATA/20_selected/pg1116/bayesvp_tutorial/'
 
 # create a config file
 
