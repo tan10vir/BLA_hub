@@ -1,0 +1,10 @@
+spec_path /home/tanvir/BLA_project/codes/examples
+output Lyman-a_2comp_fit_01
+mcmc 600 2000 4 bic emcee
+%% pg1116_data.spec 1379.094500 1392.650800
+lsf cos_G130M_lsf_1387.dat
+logN 10.00 19.00
+b    0.00 18.00
+z    0.138498 600.00
+% H I 5 20 0.138498
+% H I 5 20 0.138498
