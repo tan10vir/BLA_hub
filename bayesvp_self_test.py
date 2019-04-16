@@ -3,16 +3,8 @@
 # Reference: arxiv 1710.09852
 # See Appendix of the paper for an example.
 #-------------------------------------------------------------
-# Code to fit a single absorption line
-# Tested on Apr 8 2019 @ 23:04 on Python3
 
 import bayesvp
-
-# from astropy.io import ascii
-# from astropy.table import Table
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib as mpl
 
 #---------- Important BayesVP functions ----------------
 from bayesvp.scripts import bvp_write_config as wc
@@ -20,6 +12,16 @@ from bayesvp.mcmc_setup import bvp_mcmc_single as mc_single
 from bayesvp.mcmc_setup import bvp_mcmc as mcmc
 from bayesvp.scripts import bvp_process_model as pm
 from bayesvp.config import DefineParams
+
+#----------------------------------
+# from astropy.io import ascii
+# from astropy.table import Table
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+import os
+import sys
+import time
 
 
 #---- Additional packages/functions for trial-----------------------
@@ -29,38 +31,38 @@ from bayesvp.config import DefineParams
 # from bayesvp.vp_model import general_intensity
 # from bayesvp.vp_model import wavelength_array
 # from bayesvp.vp_model import simple_spec
+#-------------------------------------------------------------
 
+# set the path of the data
 
-
-#----------- Path of the spectrum ---------------------------------------
-
-# spectrum_path = '/home/tanvir/BLA_project/DATA/20_selected/pg1116/bayesvp_tutorial/'
+spectrum_path = '/home/tanvir/BLA_project/codes/examples/'
+# spectrum_path = 'E:/TANVIR_WORK/codes/examples/'
 
 # create a config file
+config_writer = wc.WriteBayesVPConfig().print_to_file("-i")
 
-config = wc.WriteBayesVPConfig().print_to_file()
+# load the config file
+config_fname = spectrum_path + 'bvp_configs/config_HI.dat'
 
-# Load the config file
-
-config_fname = spectrum_path + 'bvp_configs/config_NII.dat'
-
-# code_path = get_bayesvp_Dir()
-
-# Extract all of the relevant information using the DefineParams function
+# extract all of the relevant information using the DefineParams function
 config_params = DefineParams(config_fname)
 
-# print (config_params)
-
 #-------- run the MCMC fit --------------------------
-# Fitting log is written in 'config.log' file.
-#
-# int(config_params)
-mc_single(config_params)
-#
-mcmc(config_fname)
+# fitting log is written in 'config.log' file.
 
+start = time.time()
+#
+mc_single(config_params)
+mcmc(config_fname)
+#
+end = time.time()
+print((end-start)/60.)
+#-----------------------------------------------------------
 # The fitting process after the step is completed. The output chain is a binary file which ends with .npy
 # contains all the information that we need.
+# ---- read the .npy file ------
+# fit = np.load('file.npy')
+#
 
 #--------------------------------------------~~_--------------------------------------------------------
 # Note: Example in Liang2017 paper shows that using only "mcmc(config_fname)" will complete the fitting process.
@@ -75,7 +77,7 @@ mcmc(config_fname)
 
 output = pm.ProcessModel(config_params)
 
-redshift = 0.138498; dv = 200;
+redshift = 0.138498; dv = 400
 output.plot_model_comparison(redshift, dv)
 output.write_model_summary()
 output.write_model_spectrum()
