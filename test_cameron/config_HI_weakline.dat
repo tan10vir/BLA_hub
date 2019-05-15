@@ -1,0 +1,9 @@
+spec_path /project/surph/jwliang/projects/metallicity/uv_qsos/codes/vpfit/tmp/test
+output test
+mcmc 200 400 32 bic kombine
+%% pg1116_data.spec 1377.0 1379.0
+lsf COS_res1350.dat
+logN 10.00 19.00
+b    0.00 100.00
+z    0.133531304 200
+% H I 5 20 0.133531304
