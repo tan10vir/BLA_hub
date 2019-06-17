@@ -1,0 +1,232 @@
+Trying to fit: N V 1238 absorption line
+
+mcmc walker steps thread model sampler
+#----------------------------- config_NV.dat--------------------
+output N5_Fit_A
+mcmc 200 1200 4 bic kombine
+%% NVa_nc.spec 1409.700000 1411.070000
+lsf COS_res1450.dat
+% N V 15 30 0.138498
+logN 0.00 19.00
+b    0.00 100.00
+z    0.138498 200.00
+
+Time: 4.138728594779968
+
+#---------------------------------------
+mcmc walker steps thread model sampler
+
+output N5_Fit_B  Time: 12.88168183962504
+mcmc 200 2000 4 bic kombine
+
+rest same as N5_Fit_A
+
+#-----------------------
+mcmc walker steps thread model sampler
+
+output N5_Fit_C  Time: 9.211083924770355
+mcmc 200 3000 4 bic kombine
+
+rest same as N5_Fit_A
+
+Not good as Fit_B
+
+#-------------------------------
+mcmc walker steps thread model sampler
+
+output N5_Fit_D  Time:
+mcmc 300 2000 4 bic kombine
+
+rest same as N5_Fit_B
+
+
+#--------------------------------
+mcmc walker steps thread model sampler
+
+output N5_Fit_E  Time:
+
+mcmc 300 2000 8 bic kombine
+
+rest same as N5_Fit_B
+Question: Does changing threads change the fit?
+Changing threads from 4 to 8-->
+Checking:
+what changes? Time--> increases RAM/ processor time/ hangs the machine!!
+Fit --> doesn't change like that of N5_Fit_D
+
+#------------------------------
+mcmc walker steps thread model sampler
+
+output N5_Fit_F  Time: 18.150883595148724
+
+mcmc 200 5000 4 bic kombine
+lsf COS_res1400.dat
+
+changing lsf to 1400
+
+rest same as N5_Fit_B
+
+Changing the steps of 5000 as compared to model done on Fit_B (which according to me is good so far!)
+
+Result: Changing the steps to 5000 makes no difference.
+
+#---------------------------------
+mcmc walker steps thread model sampler
+
+output N5_Fit_G  Time:46.12469141880671
+
+
+mcmc 500 2000 4 bic kombine
+lsf COS_res1450.dat
+
+rest same as N5_Fit_B
+
+# as changing the steps to 5000 makes no difference, so in this model, using the same parameters as
+# Fit_B; except changing walkers to 500 from 200.
+
+Result: No difference to the fit. 
+
+#----------------------------------------------------
+
+Trying one model with `emcee` as sampler
+
+
+output N5_Fit_emcee_A
+mcmc 200 1000 4 bic emcee
+%% NVa_nc.spec 1409.700000 1411.070000
+lsf COS_res1450.dat
+% N V 15 30 0.138498
+logN 0.00 19.00
+b    0.00 100.00
+z    0.138498 200.00
+
+Result: NO change to the fitted profile
+
+output N5_Fit_emcee_B
+mcmc 400 1000 4 bic emcee
+#-----------------------------------------------------
+# Restarting--- changing the chunk size (smaller chunk)
+
+output N5_Fit_k_A
+mcmc 200 400 4 bic kombine Time : 1.593547240893046
+
+%% NVa_nc.spec 1410.0110000 1410.7883000
+lsf COS_res1400.dat
+% N V 5 20 0.138498
+logN 10.00 19.00
+b    0.00 100.00
+z    0.138498 200.00
+
+#------------------
+output N5_Fit_k_B
+mcmc 200 200 4 bic kombine Time :6.3606853008270265
+#----------------------
+output N5_Fit_k_C
+mcmc 200 4000 4 bic kombine Time: 17.086488596598308
+
+#--------------------
+output N5_Fit_k_D
+mcmc 500 1000 4 bic kombine Time: 29.966372493902842
+#-----------------
+output N5_Fit_k_E
+mcmc 700 1000 2 bic kombine Time: more than 1 hour 
+
+Interrupted: as the code made the machine too slow. 
+
+Plot: modelspec_N5_Fit_k_E.pdf --> looks much better than previous models
+                                   however, it could be much better. 
+
+
+
+#------------------------------------------------------------
+#-New fit:  N V assuming it to be proxy HI line ------------------
+output N5_Fit_proxy_HI
+mcmc 200 400 32 bic kombine
+%% NVa_nc.spec 1409.700000 1411.070000
+lsf COS_res1450.dat
+% H I 15 30 0.160192
+
+Time : 11.296362864971162
+
+rest same as N5_Fit_B
+
+No change to the fit.
+
+
+
+#--------------------------------
+
+
+# Trying to change sampler to `emcee`
+
+output N5_Fit_A_emcee
+mcmc 200 400 4 bic emcee Time: 0.32383939425150554
+
+%% NVa_nc.spec 1409.700000 1411.070000
+lsf COS_res1400.dat
+% N V 15 30 0.138498
+logN 0.00 19.00
+b    0.00 100.00
+z    0.138498 200.00
+
+Fit is same N5_Fit_B
+#-----------------------
+output N5_Fit_B_emcee
+mcmc 200 1000 4 bic emcee Time: 0.8829501231511434
+
+
+rest same as A_emcee
+#---------------------
+output N5_Fit_C_emcee
+mcmc 2000 1000 4 bic emcee Time: 11.8
+
+
+
+#--------------------------------------------
+#-------------- testing_weakline_1------------------ Cameron example------------
+spec_path /home/tanvir/BLA_project/codes/examples
+output testing_weakline_1
+mcmc 200 400 32 bic kombine
+%% pg1116_data.spec 1377.0 1379.0
+lsf COS_res1350.dat
+logN 10.00 19.00
+b    0.00 100.00
+z    0.133531304 200
+% H I 5 20 0.133531304
+
+#--------------------- testing_weakline_2----------------
+# Something is wrong. he vertical line corresponding to v_rel = 0 km/s should
+correspond to the central wavelength of the HI line, which in the plot is
+`no absorption'. The fit we see to the absorption feature then
+cannot be of HI transition at that redshift.  The question now is what is that line?
+Does fit to weak line to be done in this way.
+
+Get redshift <70-100 km/s from central wavelength position
+and run the model.
+
+Above comment is what I decode from the example fit shown by Cameron.
+
+Checking: Get the exact redshift of the absorption line, corresponding
+to cetral wavelength (z = 0.13377932). Fit the line using the same
+parameters however only changing the redshift.
+
+Output: Got the same plot as earlier. This should be the proper plot.
+
+This does not however help me understand why I cannot get a fit to NV 1238 line.
+
+
+(0.13377932 + 1 ) x 1215.6701 = 1378.30
+
+One such weak line.
+
+output testing_weakline_2
+mcmc 200 400 32 bic kombine Time : 17.4691224694252
+
+%% pg1116_data.spec 1377.0 1379.0
+lsf COS_res1350.dat
+logN 10.00 19.00
+b    0.00 100.00
+z    0.13377932 200
+% H I 5 20 0.13377932
+
+#-----------------------------------
