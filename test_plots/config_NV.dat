@@ -1,0 +1,9 @@
+spec_path /home/tanvir/BLA_project/codes/examples
+output N5_Fit_k_E
+mcmc 700 1000 2 bic kombine
+%% NVa_nc.spec 1410.0110000 1410.7883000
+lsf COS_res1400.dat
+% N V 5 20 0.138498
+logN 10.00 19.00
+b    0.00 100.00
+z    0.138498 200.00
