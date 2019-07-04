@@ -1,0 +1,6 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}\sphinxstyleliteralintitle {\sphinxupquote {bayesvp}}: Tutorial}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Installation}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Fit a simple absorption line with \sphinxstyleliteralintitle {\sphinxupquote {bayesvp}}}{2}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Setup a \IeC {\textquoteleft }config file\IeC {\textquoteright }}{2}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Run a MCMC fit}{4}{subsection.1.2.2}
