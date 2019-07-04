@@ -34,7 +34,6 @@
 \usepackage{hypcap}% it must be loaded after hyperref.
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
-\addto\captionsenglish{\renewcommand{\contentsname}{Contents:}}
 
 \addto\captionsenglish{\renewcommand{\figurename}{Fig.}}
 \addto\captionsenglish{\renewcommand{\tablename}{Table}}
@@ -52,9 +51,9 @@
 
 
 
-\title{Tutorial on BayesVP Documentation}
+\title{Tutorial on BayesVP}
 \date{Jul 04, 2019}
-\release{0.0.0.1}
+\release{0.1}
 \author{Tanvir Hussain}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -66,50 +65,113 @@
 \pagestyle{plain}
 \sphinxtableofcontents
 \pagestyle{normal}
-\phantomsection\label{\detokenize{tutorial::doc}}
+\phantomsection\label{\detokenize{index::doc}}
 
 
+\sphinxcode{\sphinxupquote{bayesvp}} is a Bayesian MCMC parallel Voigt profile fitting routine written by Cameron Liang \& Andrey Kravtsov.
 
-\chapter{\sphinxstyleliteralintitle{\sphinxupquote{bayesvp}}: Tutorial}
-\label{\detokenize{tutorial:bayesvp-tutorial}}
-\sphinxcode{\sphinxupquote{bayesvp}} is a Bayesian MCMC parallel Voigt profile fitting routine
-written by \sphinxhref{mailto:jwliang@oddjob.uchicago.edu}{Cameron Liang} \& Andrey Kravtsov.
-
-\sphinxcode{\sphinxupquote{bayesvp}} provides a number of helpful executable scripts that work
-with command line arguments (saved in your environment \sphinxcode{\sphinxupquote{PATH}}). The
-main functionality is the MCMC Voigt profile fitting (bvpfit) where the
-user supplies a config file that specifies parameters for the fitting.
-These include parameter priors, number of walkers, parallel threads,
-line spread function, continuum model, Bayesian model comparisons, and
-etc. There are utility functions that allow users to quickly create an
-example config file, process and plot the chains, process and plot the
-best fit models and more. For details on the code, refer to the papers
-\sphinxhref{https://arxiv.org/abs/1710.09852}{Liang \& Kravtsov 2017} and \sphinxhref{https://arxiv.org/abs/1710.00411}{Liang
+\sphinxcode{\sphinxupquote{bayesvp}} provides a number of helpful executable scripts that work with command line arguments (saved in your environment \sphinxcode{\sphinxupquote{PATH}}). The
+main functionality is the MCMC Voigt profile fitting (bvpfit) where the user supplies a config file that specifies parameters for the fitting.
+These include parameter priors, number of walkers, parallel threads, line spread function, continuum model, Bayesian model comparisons, and
+etc. There are utility functions that allow users to quickly create an example configuration file, process and plot the chains, process and plot the best fit models and more. For details on the code, refer to the papers \sphinxhref{https://arxiv.org/abs/1710.09852}{Liang \& Kravtsov 2017} and \sphinxhref{https://arxiv.org/abs/1710.00411}{Liang
 et al. 2017}.
 
-The following is a short tutorial on how to use \sphinxcode{\sphinxupquote{bayesvp}} fitting
-routine.
 
+\chapter{Installation instructions}
+\label{\detokenize{index:installation-instructions}}
 
 \section{Installation}
-\label{\detokenize{tutorial:installation}}
-Install \sphinxcode{\sphinxupquote{bayesvp}} using pip with the \sphinxcode{\sphinxupquote{-{-}user}} flag:
+\label{\detokenize{install:installation}}\label{\detokenize{install:install}}\label{\detokenize{install::doc}}
+\sphinxcode{\sphinxupquote{bayesvp}} is originally written and tested for Python 2.7. For Python 3.6 and above see the instructions below.
+
+
+\subsection{Dependencies}
+\label{\detokenize{install:dependencies}}
+\sphinxcode{\sphinxupquote{bayesvp}} depends on:
+\begin{itemize}
+\item {} 
+\sphinxhref{http://www.numpy.org/}{numpy}
+
+\item {} 
+\sphinxhref{https://scipy.org/}{scipy}
+
+\item {} 
+\sphinxhref{https://matplotlib.org/}{matplotlib}
+
+\item {} 
+\sphinxhref{https://pythonhosted.org/pyfits/}{pyfits}
+
+\end{itemize}
+
+You can install these using your favorite Python package manager such as \sphinxhref{https://pip.pypa.io/en/stable/installing/}{pip} or \sphinxhref{http://conda.pydata.org/docs/}{conda}.
+
+It also depends on the following MCMC samplers:
+\begin{itemize}
+\item {} 
+\sphinxhref{https://github.com/bfarr/kombine}{kombine}
+
+\item {} 
+\sphinxhref{https://github.com/dfm/emcee}{emcee}
+
+\end{itemize}
+
+
+\subsection{Using pip}
+\label{\detokenize{install:using-pip}}
+The easiest way to install the stable version of \sphinxcode{\sphinxupquote{bayesvp}} is
+using \sphinxhref{http://www.pip-installer.org/}{pip} with the \sphinxcode{\sphinxupquote{-{-}user}} flag:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{pip} \PYG{n}{install} \PYG{n}{bayesvp} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZhy{}}\PYG{n}{user}
 \end{sphinxVerbatim}
 
-\sphinxstyleemphasis{For users with Python 3 and above, you need to convert all the
-{}`{}`bayesvp{}`{}` scripts (written originally in Python 2.7) to Python 3 using
-the Python package {}`2to3 \textless{}https://pypi.org/project/2to3/\textgreater{}{}`\_.}
+To install it system-wide and you might need to add \sphinxcode{\sphinxupquote{sudo}} in the beginning.
 
-After installing \sphinxcode{\sphinxupquote{bayesvp}} we should run its unit tests to ensure the
-package works as expected. The simplest way to do this is inside a
-python shell:
+
+\subsection{From source}
+\label{\detokenize{install:from-source}}
+Alternatively, you can get the source by cloning \sphinxhref{https://github.com/cameronliang/bayesvp.git}{the git repository}:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{git} \PYG{n}{clone} \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{github}\PYG{o}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{cameronliang}\PYG{o}{/}\PYG{n}{bayesvp}\PYG{o}{.}\PYG{n}{git}
+\end{sphinxVerbatim}
+
+Once you’ve downloaded the source, you can navigate to the root directory and run:
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{python} \PYG{n}{setup}\PYG{o}{.}\PYG{n}{py} \PYG{n}{install}
+\end{sphinxVerbatim}
+
+
+\subsubsection{For Python 3.6 and above}
+\label{\detokenize{install:for-python-3-6-and-above}}
+Users with Python 3.6 and above need to convert the downloaded source code scripts to Python 3 using the python package \sphinxhref{https://pypi.org/project/2to3/}{2to3}.
+
+For example to convert \sphinxstyleemphasis{config.py} type:
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{2}\PYG{n}{to3} \PYG{o}{\PYGZhy{}}\PYG{n}{w} \PYG{n}{config}\PYG{o}{.}\PYG{n}{py}
+\end{sphinxVerbatim}
+
+Once all the python scripts are converted to Python 3, run:
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{python} \PYG{n}{setup}\PYG{o}{.}\PYG{n}{py} \PYG{n}{install}
+\end{sphinxVerbatim}
+
+
+\subsection{Test the installation}
+\label{\detokenize{install:test-the-installation}}
+If the installation went smoothly, you should run a unit tests to ensure the package works as expected. The simplest way to do this is inside a python shell:
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{bayesvp}
 \PYG{k+kn}{from} \PYG{n+nn}{bayesvp}\PYG{n+nn}{.}\PYG{n+nn}{tests} \PYG{k}{import} \PYG{n}{run\PYGZus{}tests}
 \end{sphinxVerbatim}
 
@@ -133,28 +195,24 @@ The output should look something like this:
 \PYG{n}{OK}
 \end{sphinxVerbatim}
 
-This would ensure \sphinxcode{\sphinxupquote{bayesvp}} package is installed.
+Test run with \sphinxstylestrong{no error} would ensure that \sphinxcode{\sphinxupquote{bayesvp}} is successfully installed.
 
 
-\section{Fit a simple absorption line with \sphinxstyleliteralintitle{\sphinxupquote{bayesvp}}}
-\label{\detokenize{tutorial:fit-a-simple-absorption-line-with-bayesvp}}
-We describe a simple tutorial on how to use \sphinxcode{\sphinxupquote{bayesvp}} package. It can
-be run in an interactive python session or using a python script.
+\chapter{Documentation}
+\label{\detokenize{index:documentation}}
 
-To start \sphinxcode{\sphinxupquote{bayesvp}}, first we need to setup a configuration file.
-\sphinxcode{\sphinxupquote{bayesvp}} is meant to run with this file in background as it can take
-few minutes for MCMC sampling depending on the chosen number of walkers,
-steps, and parallel processes.
+\section{Absorption line fit using \sphinxstyleliteralintitle{\sphinxupquote{bayesvp}}}
+\label{\detokenize{documentation:absorption-line-fit-using-bayesvp}}\label{\detokenize{documentation:documentation}}\label{\detokenize{documentation::doc}}
+We describe an example on how to fit a simple absorption line using \sphinxcode{\sphinxupquote{bayesvp}}.  The fitting routine can run in an interactive python session or using a python script.
 
-Below we illustrate a simple interactive use of the code and setting up
-of a configuration file to fit an O VI transition with rest wavelength
-of 1031.926 Å.
+To start \sphinxcode{\sphinxupquote{bayesvp}}, first we need to setup a configuration file. \sphinxcode{\sphinxupquote{bayesvp}} is meant to run with this file in background as it can take few minutes for MCMC sampling depending on the chosen number of walkers, steps, and parallel processes.
+
+Below we illustrate a simple interactive use of the code and setting up of a configuration file to fit an O VI transition with rest wavelength of 1031.926 Å.
 
 
-\subsection{Setup a ‘config file’}
-\label{\detokenize{tutorial:setup-a-config-file}}
-First step is to import \sphinxcode{\sphinxupquote{bayesvp}} package. Next we import an object,
-\sphinxcode{\sphinxupquote{bvp\_write\_config}}, that interactively asks the user a few questions
+\subsection{Setup a config file}
+\label{\detokenize{documentation:setup-a-config-file}}
+First step is to import \sphinxcode{\sphinxupquote{bayesvp}} package. Next we import an object, \sphinxcode{\sphinxupquote{bvp\_write\_config}}, that interactively asks the user a few questions
 to create a config file.
 
 \fvset{hllines={, ,}}%
@@ -164,28 +222,23 @@ to create a config file.
 \PYG{n}{In} \PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{:} \PYG{k+kn}{from} \PYG{n+nn}{bayesvp}\PYG{n+nn}{.}\PYG{n+nn}{scripts} \PYG{k}{import} \PYG{n}{bvp\PYGZus{}write\PYGZus{}config} \PYG{k}{as} \PYG{n}{wc}
 \end{sphinxVerbatim}
 
-Let us assume that the spectrum in question is located in the following
-directory:
+Let us assume that the spectrum in question is located in the following directory:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{In} \PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{:} \PYG{n}{spectrum\PYGZus{}path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/home/\PYGZlt{}username\PYGZgt{}/bayesvp\PYGZus{}tutorial/codes/examples/}\PYG{l+s+s1}{\PYGZsq{}}
 \end{sphinxVerbatim}
 
-Suppose the file name of the example spectrum is \sphinxcode{\sphinxupquote{OVI.spec}} with three
-of columns of data: wave, flux, error. We can use the
-\sphinxcode{\sphinxupquote{bvp\_write\_config}} routine to set up the config file as:
+Suppose the file name of the example spectrum is \sphinxcode{\sphinxupquote{OVI.spec}} with three of columns of data: wave, flux, error. We can use the \sphinxcode{\sphinxupquote{bvp\_write\_config}} routine to set up the config file as:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{In} \PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{:} \PYG{n}{config\PYGZus{}writer} \PYG{o}{=} \PYG{n}{wc}\PYG{o}{.}\PYG{n}{WriteBayesVPConfig}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{print\PYGZus{}to\PYGZus{}file}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}i}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-On executing the above command, the routine will ask the user few
-questions:
+On executing the above command, the routine will ask the user few questions:
 
-\sphinxstyleemphasis{The questions are on the left, while on the right, as an example, the
-answers are written. These answers can change based on different user
+\sphinxstyleemphasis{The questions are on the left, while on the right, as an example, the answers are written. These answers can change based on different user
 preferences.}
 
 \sphinxcode{\sphinxupquote{Path to spectrum:}} /home/\textless{}username\textgreater{}/bayesvp\_tutorial/codes/examples
@@ -194,15 +247,13 @@ preferences.}
 
 \sphinxcode{\sphinxupquote{filename for output chain:}} o6
 
-\sphinxstyleemphasis{Enter the name of the ion to be fitted: first atom name, next its
-ionization state}
+\sphinxstyleemphasis{Enter the name of the ion to be fitted: first atom name, next its ionization state}
 
 \sphinxcode{\sphinxupquote{atom:}} O
 
 \sphinxcode{\sphinxupquote{state:}} VI
 
-\sphinxstyleemphasis{Enter the number of components to used in the fitting routine. If you
-wish to use more components then type in the number}
+\sphinxstyleemphasis{Enter the number of components to used in the fitting routine. If you wish to use more components then type in the number}
 
 \sphinxcode{\sphinxupquote{Maximum number of components to try:}} 1
 
@@ -214,22 +265,19 @@ wish to use more components then type in the number}
 
 \sphinxcode{\sphinxupquote{Enter the priors:}}
 
-\sphinxstyleemphasis{Enter the assumed minimum and maximum values of column density for the
-absorption feature to be fitted}
+\sphinxstyleemphasis{Enter the assumed minimum and maximum values of column density for the absorption feature to be fitted}
 
 \sphinxcode{\sphinxupquote{min logN {[}cm\textasciicircum{}-2{]} =}} 10
 
 \sphinxcode{\sphinxupquote{max logN {[}cmˆ-2{]} =}} 18
 
-\sphinxstyleemphasis{Similarly, enter the assumed minimum and maximum values of Doppler b
-parameter for the absorption feature to be fitted}
+\sphinxstyleemphasis{Similarly, enter the assumed minimum and maximum values of Doppler b-parameter for the absorption feature to be fitted}
 
 \sphinxcode{\sphinxupquote{min b {[}km/s{]} =}} 0
 
 \sphinxcode{\sphinxupquote{max b {[}km/s{]} =}} 100
 
-\sphinxstyleemphasis{Enter the central redshift of the absorption feature corresponding to
-the ion to be fitted}
+\sphinxstyleemphasis{Enter the central redshift of the absorption feature corresponding to the ion to be fitted}
 
 \sphinxcode{\sphinxupquote{central redshift =}} 0
 
@@ -249,14 +297,12 @@ the ion to be fitted}
 
 \sphinxcode{\sphinxupquote{MCMC sampler kombine(default), emcee:}} kombine
 
-\sphinxstyleemphasis{On completion of the above step, the configuration file is automatically
-written within a sub-directory where the spectrum is located.}
+\sphinxstyleemphasis{On completion of the above step, the configuration file is automatically written within a sub-directory where the spectrum is located.}
 
 \sphinxcode{\sphinxupquote{Written config file:}}
 /home/\textless{}username\textgreater{}/bayesvp\_tutorial/codes/examples/bvp\_configs/config\_OVI.dat
 
-The saved configuration file ‘config\_OVI.dat’ will look like the
-following:
+The saved configuration file ‘config\_OVI.dat’ will look like the following:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -270,6 +316,9 @@ following:
 \PYG{n}{z}    \PYG{l+m+mf}{0.000000} \PYG{l+m+mf}{300.00}
 \end{sphinxVerbatim}
 
+
+\subsubsection{For HST/COS database}
+\label{\detokenize{documentation:for-hst-cos-database}}
 To deal with HST/COS data, which requires incorporation of line-spread-functions (LSFs), the above saved \sphinxstylestrong{config\_OVI.dat} needs to be modified as such:
 
 \fvset{hllines={, ,}}%
@@ -285,14 +334,13 @@ To deal with HST/COS data, which requires incorporation of line-spread-functions
 \PYG{n}{z}    \PYG{l+m+mf}{0.000000} \PYG{l+m+mf}{300.00}
 \end{sphinxVerbatim}
 
-\sphinxstyleemphasis{Note the changes made above. An additional statement:
-lsf \textless{}LSF kernel at the central wavelength\textgreater{} is added.}
+\sphinxstyleemphasis{Note the changes made above. An additional statement:} \sphinxcode{\sphinxupquote{lsf \textless{}LSF kernel at the central wavelength\textgreater{}}} \sphinxstyleemphasis{is added.}
 
 The \sphinxhref{http://www.stsci.edu/hst/instrumentation/cos/performance/spectral-resolution}{HST/COS LSFs} should be saved in a sub-directory (named \sphinxstylestrong{database}) where the spectrum is located.
 
 
 \subsection{Run a MCMC fit}
-\label{\detokenize{tutorial:run-a-mcmc-fit}}
+\label{\detokenize{documentation:run-a-mcmc-fit}}
 To start MCMC fit, firstly we need to import three more objects:
 
 \fvset{hllines={, ,}}%
@@ -304,8 +352,7 @@ To start MCMC fit, firstly we need to import three more objects:
 \PYG{n}{In} \PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{:} \PYG{k+kn}{from} \PYG{n+nn}{bayesvp}\PYG{n+nn}{.}\PYG{n+nn}{mcmc\PYGZus{}setup} \PYG{k}{import} \PYG{n}{bvp\PYGZus{}mcmc} \PYG{k}{as} \PYG{n}{mcmc}
 \end{sphinxVerbatim}
 
-\sphinxcode{\sphinxupquote{bayesvp}} can be run by supplying the full path to the config file as
-a command line argument. \sphinxcode{\sphinxupquote{bayesvp}} will print to screen the relevant
+\sphinxcode{\sphinxupquote{bayesvp}} can be run by supplying the full path to the config file as a command line argument. \sphinxcode{\sphinxupquote{bayesvp}} will print to screen the relevant
 information from the config file
 
 

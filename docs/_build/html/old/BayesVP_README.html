@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Welcome to Tutorial on BayesVP’s documentation! &mdash; Tutorial on BayesVP 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Tutorial on BayesVP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Absorption line fit using <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Tutorial on BayesVP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Welcome to Tutorial on BayesVP’s documentation!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/old/BayesVP_README.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="welcome-to-tutorial-on-bayesvp-s-documentation">
+<h1>Welcome to Tutorial on BayesVP’s documentation!<a class="headerlink" href="#welcome-to-tutorial-on-bayesvp-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="bayesvp-tutorial">
+<h2><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code>: Tutorial<a class="headerlink" href="#bayesvp-tutorial" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is a Bayesian MCMC parallel Voigt profile fitting routine
+written by <a class="reference external" href="mailto:jwliang&#37;&#52;&#48;oddjob&#46;uchicago&#46;edu">Cameron Liang</a> &amp; Andrey Kravtsov.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> provides a number of helpful executable scripts that work
+with command line arguments (saved in your environment <code class="docutils literal notranslate"><span class="pre">PATH</span></code>). The
+main functionality is the MCMC Voigt profile fitting (bvpfit) where the
+user supplies a config file that specifies parameters for the fitting.
+These include parameter priors, number of walkers, parallel threads,
+line spread function, continuum model, Bayesian model comparisons, and
+etc. There are utility functions that allow users to quickly create an
+example config file, process and plot the chains, process and plot the
+best fit models and more. For details on the code, refer to the papers
+<a class="reference external" href="https://arxiv.org/abs/1710.09852">Liang &amp; Kravtsov 2017</a> and <a class="reference external" href="https://arxiv.org/abs/1710.00411">Liang
+et al. 2017</a>.</p>
+<p>The following is a short tutorial on how to use <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> fitting
+routine.</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<p>Install <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> using pip with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">bayesvp</span> <span class="o">--</span><span class="n">user</span>
+</pre></div>
+</div>
+<p><em>For users with Python 3 and above, you need to convert all the
+``bayesvp`` scripts (written originally in Python 2.7) to Python 3 using
+the Python package `2to3 &lt;https://pypi.org/project/2to3/&gt;`_.</em></p>
+<p>After installing <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> we should run its unit tests to ensure the
+package works as expected. The simplest way to do this is inside a
+python shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bayesvp.tests</span> <span class="k">import</span> <span class="n">run_tests</span>
+</pre></div>
+</div>
+<p>The output should look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">output</span> <span class="n">should</span> <span class="n">look</span> <span class="n">something</span> <span class="n">like</span> <span class="n">this</span><span class="p">:</span>
+
+<span class="n">test_config_file_exists</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_config</span><span class="o">.</span><span class="n">TCConfigFile</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_default_no_continuum_params</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_config</span><span class="o">.</span><span class="n">TCConfigFile</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_example_mcmc_params</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_config</span><span class="o">.</span><span class="n">TCConfigFile</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="o">...</span>
+<span class="n">test_prior</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_likelihood</span><span class="o">.</span><span class="n">TCPosterior</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_general_intensity</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_model</span><span class="o">.</span><span class="n">TCSingleVP</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_simple_spec</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_model</span><span class="o">.</span><span class="n">TCSingleVP</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">13</span> <span class="n">tests</span> <span class="ow">in</span> <span class="mf">3.654</span><span class="n">s</span>
+
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>This would ensure <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> package is installed.</p>
+</div>
+<div class="section" id="fit-a-simple-absorption-line-with-bayesvp">
+<h3>Fit a simple absorption line with <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code><a class="headerlink" href="#fit-a-simple-absorption-line-with-bayesvp" title="Permalink to this headline">¶</a></h3>
+<p>We describe a simple tutorial on how to use <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> package. It can
+be run in an interactive python session or using a python script.</p>
+<p>To start <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code>, first we need to setup a configuration file.
+<code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is meant to run with this file in background as it can take
+few minutes for MCMC sampling depending on the chosen number of walkers,
+steps, and parallel processes.</p>
+<p>Below we illustrate a simple interactive use of the code and setting up
+of a configuration file to fit an O VI transition with rest wavelength
+of 1031.926 Å.</p>
+<div class="section" id="setup-a-config-file">
+<h4>Setup a ‘config file’<a class="headerlink" href="#setup-a-config-file" title="Permalink to this headline">¶</a></h4>
+<p>First step is to import <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> package. Next we import an object,
+<code class="docutils literal notranslate"><span class="pre">bvp_write_config</span></code>, that interactively asks the user a few questions
+to create a config file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">bayesvp</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">bayesvp.scripts</span> <span class="k">import</span> <span class="n">bvp_write_config</span> <span class="k">as</span> <span class="n">wc</span>
+</pre></div>
+</div>
+<p>Let us assume that the spectrum in question is located in the following
+directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">spectrum_path</span> <span class="o">=</span> <span class="s1">&#39;/home/&lt;username&gt;/bayesvp_tutorial/codes/examples/&#39;</span>
+</pre></div>
+</div>
+<p>Suppose the file name of the example spectrum is <code class="docutils literal notranslate"><span class="pre">OVI.spec</span></code> with three
+of columns of data: wave, flux, error. We can use the
+<code class="docutils literal notranslate"><span class="pre">bvp_write_config</span></code> routine to set up the config file as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">config_writer</span> <span class="o">=</span> <span class="n">wc</span><span class="o">.</span><span class="n">WriteBayesVPConfig</span><span class="p">()</span><span class="o">.</span><span class="n">print_to_file</span><span class="p">(</span><span class="s2">&quot;-i&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On executing the above command, the routine will ask the user few
+questions:</p>
+<p><em>The questions are on the left, while on the right, as an example, the
+answers are written. These answers can change based on different user
+preferences.</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">Path</span> <span class="pre">to</span> <span class="pre">spectrum:</span></code> /home/&lt;username&gt;/bayesvp_tutorial/codes/examples</p>
+<p><code class="docutils literal notranslate"><span class="pre">Spectrum</span> <span class="pre">filename:</span></code> OVI.spec</p>
+<p><code class="docutils literal notranslate"><span class="pre">filename</span> <span class="pre">for</span> <span class="pre">output</span> <span class="pre">chain:</span></code> o6</p>
+<p><em>Enter the name of the ion to be fitted: first atom name, next its
+ionization state</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">atom:</span></code> O</p>
+<p><code class="docutils literal notranslate"><span class="pre">state:</span></code> VI</p>
+<p><em>Enter the number of components to used in the fitting routine. If you
+wish to use more components then type in the number</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">Maximum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">components</span> <span class="pre">to</span> <span class="pre">try:</span></code> 1</p>
+<p><em>Enter the observed wavelength region to be used in the fitting routine</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">Starting</span> <span class="pre">wavelength(A):</span></code> 1030</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ending</span> <span class="pre">wavelength(A):</span></code> 1033</p>
+<p><code class="docutils literal notranslate"><span class="pre">Enter</span> <span class="pre">the</span> <span class="pre">priors:</span></code></p>
+<p><em>Enter the assumed minimum and maximum values of column density for the
+absorption feature to be fitted</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">min</span> <span class="pre">logN</span> <span class="pre">[cm^-2]</span> <span class="pre">=</span></code> 10</p>
+<p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">logN</span> <span class="pre">[cmˆ-2]</span> <span class="pre">=</span></code> 18</p>
+<p><em>Similarly, enter the assumed minimum and maximum values of Doppler b
+parameter for the absorption feature to be fitted</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">min</span> <span class="pre">b</span> <span class="pre">[km/s]</span> <span class="pre">=</span></code> 0</p>
+<p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">b</span> <span class="pre">[km/s]</span> <span class="pre">=</span></code> 100</p>
+<p><em>Enter the central redshift of the absorption feature corresponding to
+the ion to be fitted</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">central</span> <span class="pre">redshift</span> <span class="pre">=</span></code> 0</p>
+<p><code class="docutils literal notranslate"><span class="pre">velocity</span> <span class="pre">range</span> <span class="pre">[km/s]</span> <span class="pre">=</span></code>300</p>
+<p><em>Here we enter parameters to be used for MCMC sampling</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">Enter</span> <span class="pre">the</span> <span class="pre">MCMC</span> <span class="pre">parameters:</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">walkers:</span></code> 400</p>
+<p><code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">steps:</span></code> 2000</p>
+<p><code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">processes:</span></code> 8</p>
+<p><code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">selection</span> <span class="pre">method</span> <span class="pre">bic(default),aic,bf:</span></code> bic</p>
+<p><code class="docutils literal notranslate"><span class="pre">MCMC</span> <span class="pre">sampler</span> <span class="pre">kombine(default),</span> <span class="pre">emcee:</span></code> kombine</p>
+<p><em>On completion of the above step, the configuration file is automatically
+written within a sub-directory where the spectrum is located.</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">Written</span> <span class="pre">config</span> <span class="pre">file:</span></code>
+/home/&lt;username&gt;/bayesvp_tutorial/codes/examples/bvp_configs/config_OVI.dat</p>
+<p>The saved configuration file ‘config_OVI.dat’ will look like the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spec_path</span> <span class="o">/</span><span class="n">home</span><span class="o">/&lt;</span><span class="n">username</span><span class="o">&gt;/</span><span class="n">bayesvp_tutorial</span><span class="o">/</span><span class="n">codes</span><span class="o">/</span><span class="n">examples</span>
+<span class="n">output</span> <span class="n">o6</span>
+<span class="n">mcmc</span> <span class="mi">400</span> <span class="mi">2000</span> <span class="mi">8</span> <span class="n">bic</span> <span class="n">kombine</span>
+<span class="o">%%</span> <span class="n">OVI</span><span class="o">.</span><span class="n">spec</span> <span class="mf">1030.000000</span> <span class="mf">1033.000000</span>
+<span class="o">%</span> <span class="n">O</span> <span class="n">VI</span> <span class="mi">15</span> <span class="mi">30</span> <span class="mf">0.000000</span>
+<span class="n">logN</span> <span class="mf">10.00</span> <span class="mf">18.00</span>
+<span class="n">b</span>    <span class="mf">0.00</span> <span class="mf">100.00</span>
+<span class="n">z</span>    <span class="mf">0.000000</span> <span class="mf">300.00</span>
+</pre></div>
+</div>
+<p>To deal with HST/COS data, which requires incorporation of line-spread-functions (LSFs), the above saved <strong>config_OVI.dat</strong> needs to be modified as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spec_path</span> <span class="o">/</span><span class="n">home</span><span class="o">/&lt;</span><span class="n">username</span><span class="o">&gt;/</span><span class="n">bayesvp_tutorial</span><span class="o">/</span><span class="n">codes</span><span class="o">/</span><span class="n">examples</span>
+<span class="n">output</span> <span class="n">o6</span>
+<span class="n">mcmc</span> <span class="mi">400</span> <span class="mi">2000</span> <span class="mi">8</span> <span class="n">bic</span> <span class="n">kombine</span>
+<span class="o">%%</span> <span class="n">OVI</span><span class="o">.</span><span class="n">spec</span> <span class="mf">1030.000000</span> <span class="mf">1033.000000</span>
+<span class="o">%</span> <span class="n">O</span> <span class="n">VI</span> <span class="mi">15</span> <span class="mi">30</span> <span class="mf">0.000000</span>
+<span class="n">lsf</span> <span class="n">COS_res</span><span class="o">&lt;</span><span class="n">central_wavel</span><span class="o">&gt;.</span><span class="n">dat</span>
+<span class="n">logN</span> <span class="mf">10.00</span> <span class="mf">18.00</span>
+<span class="n">b</span>    <span class="mf">0.00</span> <span class="mf">100.00</span>
+<span class="n">z</span>    <span class="mf">0.000000</span> <span class="mf">300.00</span>
+</pre></div>
+</div>
+<p><em>Note the changes made above. An additional statement:
+lsf &lt;LSF kernel at the central wavelength&gt; is added.</em></p>
+<p>The <a class="reference external" href="http://www.stsci.edu/hst/instrumentation/cos/performance/spectral-resolution">HST/COS LSFs</a> should be saved in a sub-directory (named <strong>database</strong>) where the spectrum is located.</p>
+</div>
+<div class="section" id="run-a-mcmc-fit">
+<h4>Run a MCMC fit<a class="headerlink" href="#run-a-mcmc-fit" title="Permalink to this headline">¶</a></h4>
+<p>To start MCMC fit, firstly we need to import three more objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">bayesvp.config</span> <span class="k">import</span> <span class="n">DefineParams</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">bayesvp.mcmc_setup</span> <span class="k">import</span> <span class="n">bvp_mcmc_single</span> <span class="k">as</span> <span class="n">mc_single</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">bayesvp.mcmc_setup</span> <span class="k">import</span> <span class="n">bvp_mcmc</span> <span class="k">as</span> <span class="n">mcmc</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> can be run by supplying the full path to the config file as
+a command line argument. <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> will print to screen the relevant
+information from the config file</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tanvir Hussain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

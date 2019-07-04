@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; Tutorial on BayesVP 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Absorption line fit using bayesvp" href="documentation.html" />
+    <link rel="prev" title="Tutorial on BayesVP" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorial on BayesVP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-pip">Using pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from-source">From source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#for-python-3-6-and-above">For Python 3.6 and above</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#test-the-installation">Test the installation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Absorption line fit using <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorial on BayesVP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/install.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is originally written and tested for Python 2.7. For Python 3.6 and above see the instructions below.</p>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> depends on:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://www.numpy.org/">numpy</a></li>
+<li><a class="reference external" href="https://scipy.org/">scipy</a></li>
+<li><a class="reference external" href="https://matplotlib.org/">matplotlib</a></li>
+<li><a class="reference external" href="https://pythonhosted.org/pyfits/">pyfits</a></li>
+</ul>
+</div></blockquote>
+<p>You can install these using your favorite Python package manager such as <a class="reference external" href="https://pip.pypa.io/en/stable/installing/">pip</a> or <a class="reference external" href="http://conda.pydata.org/docs/">conda</a>.</p>
+<p>It also depends on the following MCMC samplers:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/bfarr/kombine">kombine</a></li>
+<li><a class="reference external" href="https://github.com/dfm/emcee">emcee</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="using-pip">
+<h2>Using pip<a class="headerlink" href="#using-pip" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to install the stable version of <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is
+using <a class="reference external" href="http://www.pip-installer.org/">pip</a> with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">bayesvp</span> <span class="o">--</span><span class="n">user</span>
+</pre></div>
+</div>
+<p>To install it system-wide and you might need to add <code class="docutils literal notranslate"><span class="pre">sudo</span></code> in the beginning.</p>
+</div>
+<div class="section" id="from-source">
+<h2>From source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h2>
+<p>Alternatively, you can get the source by cloning <a class="reference external" href="https://github.com/cameronliang/bayesvp.git">the git repository</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cameronliang</span><span class="o">/</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Once you’ve downloaded the source, you can navigate to the root directory and run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<div class="section" id="for-python-3-6-and-above">
+<h3>For Python 3.6 and above<a class="headerlink" href="#for-python-3-6-and-above" title="Permalink to this headline">¶</a></h3>
+<p>Users with Python 3.6 and above need to convert the downloaded source code scripts to Python 3 using the python package <a class="reference external" href="https://pypi.org/project/2to3/">2to3</a>.</p>
+<p>For example to convert <em>config.py</em> type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="n">to3</span> <span class="o">-</span><span class="n">w</span> <span class="n">config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Once all the python scripts are converted to Python 3, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-the-installation">
+<h2>Test the installation<a class="headerlink" href="#test-the-installation" title="Permalink to this headline">¶</a></h2>
+<p>If the installation went smoothly, you should run a unit tests to ensure the package works as expected. The simplest way to do this is inside a python shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bayesvp</span>
+<span class="kn">from</span> <span class="nn">bayesvp.tests</span> <span class="k">import</span> <span class="n">run_tests</span>
+</pre></div>
+</div>
+<p>The output should look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">output</span> <span class="n">should</span> <span class="n">look</span> <span class="n">something</span> <span class="n">like</span> <span class="n">this</span><span class="p">:</span>
+
+<span class="n">test_config_file_exists</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_config</span><span class="o">.</span><span class="n">TCConfigFile</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_default_no_continuum_params</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_config</span><span class="o">.</span><span class="n">TCConfigFile</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_example_mcmc_params</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_config</span><span class="o">.</span><span class="n">TCConfigFile</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="o">...</span>
+<span class="n">test_prior</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_likelihood</span><span class="o">.</span><span class="n">TCPosterior</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_general_intensity</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_model</span><span class="o">.</span><span class="n">TCSingleVP</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_simple_spec</span> <span class="p">(</span><span class="n">bayesvp</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">test_model</span><span class="o">.</span><span class="n">TCSingleVP</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">13</span> <span class="n">tests</span> <span class="ow">in</span> <span class="mf">3.654</span><span class="n">s</span>
+
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>Test run with <strong>no error</strong> would ensure that <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is successfully installed.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="documentation.html" class="btn btn-neutral float-right" title="Absorption line fit using bayesvp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorial on BayesVP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tanvir Hussain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
