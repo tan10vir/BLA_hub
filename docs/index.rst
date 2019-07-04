@@ -12,6 +12,11 @@ etc. There are utility functions that allow users to quickly create an example c
 et al. 2017 <https://arxiv.org/abs/1710.00411>`_.
 
 
+Acknowledgements
+----------------
+|
+  This tutorial is written based on the examples done by `Cameron Liang <https://github.com/cameronliang/bayesvp.git>`_
+
 
 Installation instructions
 -------------------------
