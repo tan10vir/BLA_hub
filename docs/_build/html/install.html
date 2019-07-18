@@ -179,15 +179,21 @@
 <p>It also depends on the following MCMC samplers:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference external" href="https://github.com/bfarr/kombine">kombine</a></li>
-<li><a class="reference external" href="https://github.com/dfm/emcee">emcee</a></li>
+<li><a class="reference external" href="https://emcee.readthedocs.io/en/stable/">emcee</a></li>
+<li><a class="reference external" href="https://cosmosis.readthedocs.io/en/latest/reference/samplers/kombine.html">kombine</a></li>
 </ul>
 </div></blockquote>
+<p>The above samplers can be installed using <a class="reference external" href="https://pip.pypa.io/en/stable/installing/">pip</a> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pip install emcee
+
+pip install –user git+git://github.com/bfarr/kombine
+</pre></div>
+</div>
+<p>You might need to run this using <code class="docutils literal notranslate"><span class="pre">sudo</span></code> depending on your Python installation.</p>
 </div>
 <div class="section" id="using-pip">
 <h2>Using pip<a class="headerlink" href="#using-pip" title="Permalink to this headline">¶</a></h2>
-<p>The easiest way to install the stable version of <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is
-using <a class="reference external" href="http://www.pip-installer.org/">pip</a> with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag:</p>
+<p>The easiest way to install the stable version of <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is using <a class="reference external" href="https://pip.pypa.io/en/stable/installing/">pip</a> with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">bayesvp</span> <span class="o">--</span><span class="n">user</span>
 </pre></div>
 </div>
@@ -206,7 +212,7 @@ using <a class="reference external" href="http://www.pip-installer.org/">pip</a>
 <div class="section" id="for-python-3-6-and-above">
 <h3>For Python 3.6 and above<a class="headerlink" href="#for-python-3-6-and-above" title="Permalink to this headline">¶</a></h3>
 <p>Users with Python 3.6 and above need to convert the downloaded source code scripts to Python 3 using the python package <a class="reference external" href="https://pypi.org/project/2to3/">2to3</a>.</p>
-<p>For example to convert <em>config.py</em> type:</p>
+<p>For example to convert a file named <em>config.py</em> type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="n">to3</span> <span class="o">-</span><span class="n">w</span> <span class="n">config</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -240,7 +246,7 @@ using <a class="reference external" href="http://www.pip-installer.org/">pip</a>
 <span class="n">OK</span>
 </pre></div>
 </div>
-<p>Test run with <strong>no error</strong> would ensure that <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is successfully installed.</p>
+<p>Test run result with <strong>no error</strong> would ensure that <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is successfully installed.</p>
 </div>
 </div>
 

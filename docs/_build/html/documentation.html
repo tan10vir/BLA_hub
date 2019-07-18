@@ -88,10 +88,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Absorption line fit using <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code></a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#setup-a-config-file">Setup a config file</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#for-hst-cos-database">For HST/COS database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-hst-cos-data">For HST/COS data</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#run-a-mcmc-fit">Run a MCMC fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mcmc-fit">MCMC fit</a></li>
 </ul>
 </li>
 </ul>
@@ -225,8 +225,8 @@ preferences.</em></p>
 <span class="n">z</span>    <span class="mf">0.000000</span> <span class="mf">300.00</span>
 </pre></div>
 </div>
-<div class="section" id="for-hst-cos-database">
-<h3>For HST/COS database<a class="headerlink" href="#for-hst-cos-database" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="for-hst-cos-data">
+<h3>For HST/COS data<a class="headerlink" href="#for-hst-cos-data" title="Permalink to this headline">¶</a></h3>
 <p>To deal with HST/COS data, which requires incorporation of line-spread-functions (LSFs), the above saved <strong>config_OVI.dat</strong> needs to be modified as such:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spec_path</span> <span class="o">/</span><span class="n">home</span><span class="o">/&lt;</span><span class="n">username</span><span class="o">&gt;/</span><span class="n">bayesvp_tutorial</span><span class="o">/</span><span class="n">codes</span><span class="o">/</span><span class="n">examples</span>
 <span class="n">output</span> <span class="n">o6</span>
@@ -243,18 +243,20 @@ preferences.</em></p>
 <p>The <a class="reference external" href="http://www.stsci.edu/hst/instrumentation/cos/performance/spectral-resolution">HST/COS LSFs</a> should be saved in a sub-directory (named <strong>database</strong>) where the spectrum is located.</p>
 </div>
 </div>
-<div class="section" id="run-a-mcmc-fit">
-<h2>Run a MCMC fit<a class="headerlink" href="#run-a-mcmc-fit" title="Permalink to this headline">¶</a></h2>
-<p>To start MCMC fit, firstly we need to import three more objects:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">bayesvp.config</span> <span class="k">import</span> <span class="n">DefineParams</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">bayesvp.mcmc_setup</span> <span class="k">import</span> <span class="n">bvp_mcmc_single</span> <span class="k">as</span> <span class="n">mc_single</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">bayesvp.mcmc_setup</span> <span class="k">import</span> <span class="n">bvp_mcmc</span> <span class="k">as</span> <span class="n">mcmc</span>
+<div class="section" id="mcmc-fit">
+<h2>MCMC fit<a class="headerlink" href="#mcmc-fit" title="Permalink to this headline">¶</a></h2>
+<p>We can now run MCMC fit. To start we first supply the full path to the <strong>config file</strong> created as a command line argument.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">config_fname</span> <span class="o">=</span> <span class="n">spectrum_path</span> <span class="o">+</span> <span class="s1">&#39;bvp_configs/config_OVI.dat&#39;</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> can be run by supplying the full path to the config file as a command line argument. <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> will print to screen the relevant
-information from the config file</p>
+<p>Next we import the MCMC fit object <code class="docutils literal notranslate"><span class="pre">bvp_mcmc</span></code> and run the fit as shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">bayesvp.mcmc_setup</span> <span class="k">import</span> <span class="n">bvp_mcmc</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">bvp_mcmc</span><span class="p">(</span><span class="n">config_fname</span><span class="p">,</span> <span class="n">print_config</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">bvp_mcmc</span></code> runs a fixed number of component fit as specified by the config file or make copies of the configs and run upto the maximum number of components specified until the best model is found. For each MCMC run, one or more chain is produced as an output. Setting <code class="docutils literal notranslate"><span class="pre">print_config</span> <span class="pre">=</span> <span class="pre">True</span></code> will save the configuration used in the run in a sub-directory where the spectrum is located.</p>
+<p>The the fitting process is completed after the above step produces an output chain saved in a sub-directory (named <strong>chains</strong>) where the spectrum is located. The output chain is a binary file (ends with .npy) which contains all the information that we need.</p>
 </div>
 </div>
 

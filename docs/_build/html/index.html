@@ -153,12 +153,14 @@
             
   <div class="section" id="tutorial-on-bayesvp">
 <h1>Tutorial on BayesVP<a class="headerlink" href="#tutorial-on-bayesvp" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is a Bayesian MCMC parallel Voigt profile fitting routine written by Cameron Liang &amp; Andrey Kravtsov.</p>
-<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> provides a number of helpful executable scripts that work with command line arguments (saved in your environment <code class="docutils literal notranslate"><span class="pre">PATH</span></code>). The
-main functionality is the MCMC Voigt profile fitting (bvpfit) where the user supplies a config file that specifies parameters for the fitting.
-These include parameter priors, number of walkers, parallel threads, line spread function, continuum model, Bayesian model comparisons, and
-etc. There are utility functions that allow users to quickly create an example configuration file, process and plot the chains, process and plot the best fit models and more. For details on the code, refer to the papers <a class="reference external" href="https://arxiv.org/abs/1710.09852">Liang &amp; Kravtsov 2017</a> and <a class="reference external" href="https://arxiv.org/abs/1710.00411">Liang
-et al. 2017</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> is python package developed by <a class="reference external" href="mailto:jwliang&#37;&#52;&#48;oddjob&#46;uchicago&#46;edu">Cameron Liang</a> &amp; Andrey Kravtsov. It implements a Bayesian approach for modeling absorption lines with the Voigt profile. The package can be used to simultaneously fit multiple absorption components to constrain column density, Doppler parameter, and redshift of the absorbing gas. The parameter constraints are derived in the form of marginalized posterior distributions, which allows for uniform treatment of the non-detections (i.e., upper limits) and detections in subsequent analyses, model fits, and comparisons of observations with simulations.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bayesvp</span></code> package is designed to have a simple user interface with a single configuration file. The main functionality is the MCMC Voigt profile fitting (<code class="docutils literal notranslate"><span class="pre">bvpfit</span></code>) where the user supplies a configuration file that specifies parameters for the fitting. These include parameter priors, number of walkers, parallel threads, line spread function, continuum model, Bayesian model comparisons, and etc. There are utility functions that allow users to quickly create an example configuration file, process and plot the chains, process and plot the best fit models and more. For details on the how code works and more, refer to the papers <a class="reference external" href="https://arxiv.org/abs/1710.09852">Liang &amp; Kravtsov 2017</a> and <a class="reference external" href="https://arxiv.org/abs/1710.00411">Liang et al. 2017</a>.</p>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">This tutorial is written based on the examples in <a class="reference external" href="https://arxiv.org/abs/1710.09852">Liang &amp; Kravtsov 2017</a>.</div>
+</div>
+</div>
 <div class="section" id="installation-instructions">
 <h2>Installation instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -179,7 +181,7 @@ et al. 2017</a>.</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Absorption line fit using <code class="docutils literal notranslate"><span class="pre">bayesvp</span></code></a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documentation.html#setup-a-config-file">Setup a config file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation.html#run-a-mcmc-fit">Run a MCMC fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#mcmc-fit">MCMC fit</a></li>
 </ul>
 </li>
 </ul>

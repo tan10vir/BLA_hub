@@ -115,7 +115,7 @@ The saved configuration file 'config\_OVI.dat' will look like the following:
     z    0.000000 300.00
 
 
-For HST/COS database
+For HST/COS data
 ~~~~~~~~~~~~~~~~~~~~
 
 To deal with HST/COS data, which requires incorporation of line-spread-functions (LSFs), the above saved **config_OVI.dat** needs to be modified as such:
@@ -137,18 +137,30 @@ To deal with HST/COS data, which requires incorporation of line-spread-functions
 The `HST/COS LSFs <http://www.stsci.edu/hst/instrumentation/cos/performance/spectral-resolution>`_ should be saved in a sub-directory (named **database**) where the spectrum is located.
 
 
-Run a MCMC fit
+MCMC fit
 --------------
 
-To start MCMC fit, firstly we need to import three more objects:
+We can now run MCMC fit. To start we first supply the full path to the **config file** created as a command line argument.
+
+.. Using this config file and parameters stored in it, we can run ``bayesvp`` MCMC fit.
 
 ::
 
-    In [5]: from bayesvp.config import DefineParams
+    In [5]: config_fname = spectrum_path + 'bvp_configs/config_OVI.dat'
 
-    In [6]: from bayesvp.mcmc_setup import bvp_mcmc_single as mc_single
+Next we import the MCMC fit object ``bvp_mcmc`` and run the fit as shown below.
 
-    In [7]: from bayesvp.mcmc_setup import bvp_mcmc as mcmc
+.. The output is one or more chains for each MCMC run.
 
-``bayesvp`` can be run by supplying the full path to the config file as a command line argument. ``bayesvp`` will print to screen the relevant
-information from the config file
+::
+
+    In [6]: from bayesvp.mcmc_setup import bvp_mcmc
+
+    In [7]: bvp_mcmc(config_fname, print_config = True)
+
+``bvp_mcmc`` runs a fixed number of component fit as specified by the config file or make copies of the configs and run upto the maximum number of components specified until the best model is found. For each MCMC run, one or more chain is produced as an output. Setting ``print_config = True`` will save the configuration used in the run in a sub-directory where the spectrum is located.
+
+The the fitting process is completed after the above step produces an output chain saved in a sub-directory (named **chains**) where the spectrum is located. The output chain is a binary file (ends with .npy) which contains all the information that we need. 
+
+.. ``bayesvp`` will print to screen the relevant information from the config file
+.. ``DefineParams`` reads and defines fitting parameters from *config file* created.

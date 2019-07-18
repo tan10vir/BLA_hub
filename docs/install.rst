@@ -15,19 +15,27 @@ Dependencies
     - matplotlib_
     - pyfits_
 
-You can install these using your favorite Python package manager such as `pip <https://pip.pypa.io/en/stable/installing/>`_ or `conda <http://conda.pydata.org/docs/>`_.
+You can install these using your favorite Python package manager such as pip_ or conda_.
 
 It also depends on the following MCMC samplers:
 
-    + kombine_
     + emcee_
+    + kombine_
 
+The above samplers can be installed using pip_ :
+
+::
+
+    pip install emcee
+
+    pip install –user git+git://github.com/bfarr/kombine
+
+You might need to run this using ``sudo`` depending on your Python installation.
 
 Using pip
 ---------
 
-The easiest way to install the stable version of ``bayesvp`` is
-using `pip <http://www.pip-installer.org/>`_ with the ``--user`` flag:
+The easiest way to install the stable version of ``bayesvp`` is using pip_ with the ``--user`` flag:
 
 ::
 
@@ -55,7 +63,7 @@ For Python 3.6 and above
 
 Users with Python 3.6 and above need to convert the downloaded source code scripts to Python 3 using the python package 2to3_.
 
-For example to convert *config.py* type:
+For example to convert a file named *config.py* type:
 
 ::
 
@@ -96,14 +104,17 @@ The output should look something like this:
 
     OK
 
-Test run with **no error** would ensure that ``bayesvp`` is successfully installed.
+Test run result with **no error** would ensure that ``bayesvp`` is successfully installed.
+
+.. _pip: https://pip.pypa.io/en/stable/installing/
+.. _conda: http://conda.pydata.org/docs/
 
 .. _numpy: http://www.numpy.org/
 .. _scipy: https://scipy.org/
 .. _matplotlib: https://matplotlib.org/
 .. _pyfits: https://pythonhosted.org/pyfits/
 
-.. _kombine: https://github.com/bfarr/kombine
-.. _emcee: https://github.com/dfm/emcee
+.. _emcee: https://emcee.readthedocs.io/en/stable/
+.. _kombine: https://cosmosis.readthedocs.io/en/latest/reference/samplers/kombine.html
 
 .. _2to3: https://pypi.org/project/2to3/
