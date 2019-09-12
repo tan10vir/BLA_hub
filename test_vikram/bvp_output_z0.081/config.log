@@ -1,0 +1,13 @@
+Config file: /home/vikram/BLA_hub/test_vikram/hi_config.dat
+Spectrum Path: /home/vikram/BLA_hub/test_vikram
+Spectrum name: pg1116_data.spec
+Fitting 1 components with transitions:
+    Transitions Wavelength: 1215.670
+Selected data wavelegnth region:
+    [1312.000, 1316.000]
+MCMC Sampler: kombine
+Model selection method (if needed): bic
+Walkers,steps,threads : 400,10000,8
+Priors: logN: [min,   max] = [10.000, 18.000]
+b:            [min,   max] = [0.000, 100.000]
+redshift:     [min,   max] = [0.08000, 0.08200]

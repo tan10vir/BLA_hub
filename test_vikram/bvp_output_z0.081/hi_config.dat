@@ -1,0 +1,8 @@
+output test
+mcmc 400 10000 8 bic kombine
+%% pg1116_data.spec 1312.0 1316.0
+lsf COS_res1300.dat
+logN 10.00 18.00
+b    0.00 100.00
+z    0.081 300
+% H I 11 20 0.081
